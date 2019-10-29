@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <scamelclient></scamelclient>
+    <noscript>This application has no html version (without javascript) yet. Ask the developer for it !</noscript>
+    
+    <!--<script src="lib/d3.v4.0.0-alpha.49.min.js" ></script>-->
+    <script src="lib/riot-compiler-min.js" ></script>
+    <script src="lib/jquery-3.1.0.min.js" ></script>
+    <script src="lib/d3.v4.0.0-alpha.49.min.js" ></script>
+
+    <script src="util.js" ></script>
+    <script src="charts.js" ></script>
+
+    <script src="riot-tags/d3chart.tag" type="riot/tag" ></script>
+    <script src="riot-tags/scamelclient.tag" type="riot/tag" ></script>
+    
+    <script>
+     $(document).ready(function () {
+     riot.mount("scamelclient", {
+         url: "http://localhost:8080/sim", 
+	 panels: panels, charts: charts, loadInterval: 250,
+	 nbPeriodsByLoad: 50, maxLoad: 600, readInterval: 50,
+	 chartDefault: {
+	   width: 400, height: 180, format: ".2s" }})
+     });
+    </script>
+  </body>
+</html>
