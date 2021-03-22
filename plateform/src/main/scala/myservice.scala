@@ -55,15 +55,14 @@ class SimActor (alias:String, redisActor:ActorRef, nbStoredArg:Int)
     procOut => processOutput =
       new BufferedReader (new InputStreamReader (procOut)),
     _ => ())
-
-  val simPath = Paths.get(getClass.getResource("/sim.exe").getPath)
-
+		
   val simExecPath =
     Files.createTempFile ("sim", ".exe",
       PosixFilePermissions.asFileAttribute(
         PosixFilePermissions.fromString("rwx------")))
    
-  Files.write(simExecPath, Files.readAllBytes(simPath))
+  val simStream = getClass.getResourceAsStream("/sim.exe")		
+  Files.write(simExecPath, simStream.readAllBytes)
 
   simExecPath.toFile.setWritable(false)
 
@@ -230,7 +229,7 @@ class MyServiceActor extends Actor with MyService {
 
   val gestionnaireRedis =
     actorRefFactory.actorOf(Props(classOf[RedisActor],
-      RedisClient("localhost", 6379)(actorRefFactory)), "gestionnaireRedis")
+      RedisClient("localhost", 6380)(actorRefFactory)), "gestionnaireRedis")
 
   val gestionnaireSim = actorRefFactory.actorOf(
     Props(classOf[GestionnaireSim], gestionnaireRedis), "gestionnaireSim")
