@@ -22,8 +22,8 @@
     <script>
      $(document).ready(function () {
      riot.mount("scamelclient", {
-         url: "http://localhost:8080/sim", 
-	 panels: panels, charts: charts, loadInterval: 250,
+         url: "/sim", 
+	 panels: panels, charts: charts, loadInterval: 500,
 	 nbPeriodsByLoad: 50, maxLoad: 600, readInterval: 50,
 	 chartDefault: {
 	   width: 400, height: 180, format: ".2s" }})
