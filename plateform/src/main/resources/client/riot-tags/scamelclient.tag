@@ -158,7 +158,7 @@
    unZoom () { self.startZoom = 0 ; self.endZoom = self.currentRead }
 
    mouseOnPeriod (period) {
-     if (isDef(period) && period <= self.currentLoad) {
+     if (isDef(period) && period <= self.currentLoad && self.currentRead > 0) {
        self.pointsOnPeriods = {};
        Object.keys(data).forEach(function (dataName) {
 	 self.pointsOnPeriods[dataName] = data[dataName][period];
